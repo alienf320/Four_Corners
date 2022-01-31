@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Four Corners</title>
+  <link rel="stylesheet" href="./style.css">
+	<script  src="./script.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="alert/dist/sweetalert.css">
+</head>
+<body>
+<div class="bg-image"></div>
+
+<H1>Four Corners Game</H1>
+<div class="mainBottons">
+<BUTTON onClick="resetGame();" id="reset">Start New Game</BUTTON>
+<BUTTON onClick="fourCorners();" id="next">Next Round</BUTTON>
+</div>
+
+<div id="room">
+	<div id="North" class="corner"></div>
+	
+	<div id="West" class="corner"></div>
+	<div id="player">
+	  <button class="botonEsquina" onClick="clickCorner('North');">North</button><br/>
+	  <button class="botonEsquina" onClick="clickCorner('West');">West</button>
+	  <button class="botonEsquina" onClick="clickCorner('East');">East</Button><br/>
+	  <button class="botonEsquina" onClick="clickCorner('South');">South</button>
+	  </div>
+	<div id="East" class="corner"></div>
+	<div id="South" class="corner"></div>
+</div>
+
+  
+
+</body>
+</html>
