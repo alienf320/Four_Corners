@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="alert/dist/sweetalert.css">
 </head>
 <body>
-<div class="bg-image"></div>
+
 
 <H1>Four Corners Game</H1>
 <div class="mainBottons">
@@ -32,7 +32,23 @@
 	<div id="South" class="corner"></div>
 </div>
 
-  
+<div id="blackScreen"></div>
+
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h3>Cargar jugadores</h3>
+    <label for="jugador"><b>Jugador</b></label>
+    <input type="text" placeholder="Nombre del jugador" name="jugador" id="inputJugador">
+	<div class="btns-cargarJug">
+		<button class="btn" onclick="agregarJugador();">Add</button>
+		<button class="btn" onclick="quitarJugador();">Delete</button>
+	</div>
+	<div id="jugadoresCargados"></div>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div> 
+
+<button class="open-button" onclick="openForm()">Cargar jugadores</button>
 
 </body>
 </html>

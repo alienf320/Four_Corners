@@ -1,4 +1,5 @@
 var names = [];
+var nombre = [...names];
 
 var cornerArr = {"North": [], 
 		"South": [],
@@ -7,7 +8,7 @@ var cornerArr = {"North": [],
 
 //A function to move all remaining participants to the four corners (randomly)
 function fourCorners() {
-	var numberOfPlayers = names.length;
+	var numberOfPlayers = nombre.length;
 	
 	$(".corner").html("");
 	
@@ -21,30 +22,30 @@ function fourCorners() {
 	
     setTimeout(function(){ 	
 		for (i = 0; i < numberOfPlayers; i++) {
-			console.log(names);
+			console.log(nombre);
 		var room = Math.floor(Math.random()*4);
 			switch(room) {
 				case 0:
 					let eastText = $("#East").html();
-					eastText +=  names[i] + "<br/>";
+					eastText +=  nombre[i] + "<br/>";
 					$("#East").html(eastText);
-					cornerArr["East"].push(names[i]);
+					cornerArr["East"].push(nombre[i]);
 					break;
 				case 1:
 					let northText = $("#North").html();
-					northText +=  names[i] + "<br/>";
+					northText +=  nombre[i] + "<br/>";
 					$("#North").html(northText);
-					cornerArr["North"].push(names[i]);
+					cornerArr["North"].push(nombre[i]);
 					break;
 				case 2:
 					let southText = $("#South").html();
-					southText +=  names[i] + "<br/>";
+					southText +=  nombre[i] + "<br/>";
 					$("#South").html(southText);
-					cornerArr["South"].push(names[i]);
+					cornerArr["South"].push(nombre[i]);
 					break;
 				case 3:
-					$("#West").html($("#West").html() + names[i] + "<br/>");
-					cornerArr["West"].push(names[i]);
+					$("#West").html($("#West").html() + nombre[i] + "<br/>");
+					cornerArr["West"].push(nombre[i]);
 					break;
 			}
 		}
@@ -52,7 +53,12 @@ function fourCorners() {
 }
 
 function resetGame() {
-  names = ["Kacy", "Lucas", "Ali", "Cheung", "Leila", "Jeff", "Fran", "Noah", "Eldece", "Marwan", "Laura", "Harry", "Tim", "Jess", "Keziah", "Sivanujan", "Millie", "Tasmiya", "Reuben", "Ruby", "Finley", "Oliver"];
+	nombre = [...names];
+	if(names==[]) {
+		console.log("entro");
+		names = ["Kacy", "Lucas", "Ali", "Cheung", "Leila", "Jeff", "Fran", "Noah", "Eldece", "Marwan", "Laura", "Harry", "Tim", "Jess", "Keziah", "Sivanujan", "Millie", "Tasmiya", "Reuben", "Ruby", "Finley", "Oliver"];
+	}
+	
   fourCorners();
 }
 
@@ -60,13 +66,13 @@ function clickCorner(corner) {
 
 	showCorners(corner);
 	disableButtons();
-	names = [];
+	nombre = [];
 	for(let i in cornerArr) {
 		if(cornerArr[i] != cornerArr[corner]) {
-			names = names.concat(cornerArr[i]);
+			nombre = nombre.concat(cornerArr[i]);
 		}
 	}
-	checkWinner(names);
+	checkWinner(nombre);
 }
 
 function showCorners(corner) {
@@ -87,4 +93,36 @@ function checkWinner(arr) {
 	if(arr.length == 1) {
 		swal("Congrats!", arr[0] + " is the winner", "success");
 	}
+}
+
+function agregarJugador() {
+	let player = $(".form-popup input").val();
+	console.log(player);
+	$("#jugadoresCargados").html($("#jugadoresCargados").html() + player + "<br/>");
+}
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+  document.getElementById("blackScreen").style.visibility = "visible";
+  document.getElementById("blackScreen").style.opacity = 1;
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+  document.getElementById("blackScreen").style.visibility = "hidden";
+  document.getElementById("blackScreen").style.opacity = 0;
+  cargarJugadores();
+} 
+
+function cargarJugadores() {
+	let jCargados = $("#jugadoresCargados").html();
+	names = jCargados.split('<br>');
+	names.pop();
+	nombre = [...names];
+}
+
+function quitarJugador() {
+	let jCargados = $("#jugadoresCargados").html();
+	let regex = /\w*?<br>$/
+	$("#jugadoresCargados").html(jCargados.replace(regex, ''));
 }
