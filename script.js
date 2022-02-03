@@ -1,69 +1,80 @@
 var names = [];
 var nombre = [...names];
+var blocked = false;
+window.onload = divClick;
 
 var cornerArr = {"North": [], 
 		"South": [],
 		"East": [],
 		"West": []};
 
-//A function to move all remaining participants to the four corners (randomly)
 function fourCorners() {
 	var numberOfPlayers = nombre.length;
-	
-	$(".corner").html("");
+		
+	$(".corner-back").html("");
 	
 	for(let i in cornerArr) {
 		cornerArr[i] = [];
 	}
 	
 	$(".botonEsquina").prop("disabled", false);
-    $(".corner").css("color", "black");
-    $(".corner").css("opacity", 0);	
+    $(".container").css("color", "black");
+	$(".corner-back").css("visibility", "hidden"); 
+	$(".container").css("transform", "rotateY(0deg)");
+	blocked = false;
 	
-    setTimeout(function(){ 	
-		for (i = 0; i < numberOfPlayers; i++) {
-			console.log(nombre);
-		var room = Math.floor(Math.random()*4);
-			switch(room) {
-				case 0:
-					let eastText = $("#East").html();
-					eastText +=  nombre[i] + "<br/>";
-					$("#East").html(eastText);
-					cornerArr["East"].push(nombre[i]);
-					break;
-				case 1:
-					let northText = $("#North").html();
-					northText +=  nombre[i] + "<br/>";
-					$("#North").html(northText);
-					cornerArr["North"].push(nombre[i]);
-					break;
-				case 2:
-					let southText = $("#South").html();
-					southText +=  nombre[i] + "<br/>";
-					$("#South").html(southText);
-					cornerArr["South"].push(nombre[i]);
-					break;
-				case 3:
-					$("#West").html($("#West").html() + nombre[i] + "<br/>");
-					cornerArr["West"].push(nombre[i]);
-					break;
-			}
+	for (i = 0; i < numberOfPlayers; i++) {
+		
+	var room = Math.floor(Math.random()*4);
+		switch(room) {
+			case 0:
+				let eastText = $("#EastB").html();
+				eastText +=  nombre[i] + "<br/>";
+				$("#EastB").html(eastText);
+				cornerArr["East"].push(nombre[i]);
+				break;
+			case 1:
+				let northText = $("#NorthB").html();
+				northText +=  nombre[i] + "<br/>";
+				$("#NorthB").html(northText);
+				cornerArr["North"].push(nombre[i]);
+				break;
+			case 2:
+				let southText = $("#SouthB").html();
+				southText +=  nombre[i] + "<br/>";
+				$("#SouthB").html(southText);
+				cornerArr["South"].push(nombre[i]);
+				break;
+			case 3:
+				$("#WestB").html($("#WestB").html() + nombre[i] + "<br/>");
+				cornerArr["West"].push(nombre[i]);
+				break;
 		}
-	}, 500);
+	}
 }
 
 function resetGame() {
-	nombre = [...names];
-	if(names==[]) {
+	
+	if(names=='') {
 		console.log("entro");
 		names = ["Kacy", "Lucas", "Ali", "Cheung", "Leila", "Jeff", "Fran", "Noah", "Eldece", "Marwan", "Laura", "Harry", "Tim", "Jess", "Keziah", "Sivanujan", "Millie", "Tasmiya", "Reuben", "Ruby", "Finley", "Oliver"];
 	}
+	nombre = [...names];
+	fourCorners();
+}
+
+function divClick() {
+	$(".container").click(function() {
+		if(!blocked) {
+			clickCorner(this.id);
+			$(".container").css("transform", "rotateY(0.5turn)");
+			setTimeout(function(){$(".corner-back").css("visibility", "visible"); }, 400);
+		}
+	})
 	
-  fourCorners();
 }
 
 function clickCorner(corner) {
-
 	showCorners(corner);
 	disableButtons();
 	nombre = [];
@@ -73,14 +84,12 @@ function clickCorner(corner) {
 		}
 	}
 	checkWinner(nombre);
+	blocked = true;
 }
 
 function showCorners(corner) {
-
 	var choice = document.getElementById(corner);
 	choice.style.color = "brown";
-	
-	$(".corner").css("opacity", 1);
 }
 
 function disableButtons() {
@@ -97,7 +106,6 @@ function checkWinner(arr) {
 
 function agregarJugador() {
 	let player = $(".form-popup input").val();
-	console.log(player);
 	$("#jugadoresCargados").html($("#jugadoresCargados").html() + player + "<br/>");
 }
 

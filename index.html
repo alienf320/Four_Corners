@@ -19,17 +19,32 @@
 </div>
 
 <div id="room">
-	<div id="North" class="corner"></div>
 	
-	<div id="West" class="corner"></div>
+	<div class="container" id="North">
+		<figure id="NorthA" class="corner-front"></figure>
+		<figure id="NorthB" class="corner-back"></figure>
+	</div>
+	<div class="container" id="West">
+		<figure id="WestA" class="corner-front"></figure>
+		<figure id="WestB" class="corner-back"></figure>
+	</div>
+	
 	<div id="player">
 	  <button class="botonEsquina" onClick="clickCorner('North');">North</button><br/>
 	  <button class="botonEsquina" onClick="clickCorner('West');">West</button>
 	  <button class="botonEsquina" onClick="clickCorner('East');">East</Button><br/>
 	  <button class="botonEsquina" onClick="clickCorner('South');">South</button>
 	  </div>
-	<div id="East" class="corner"></div>
-	<div id="South" class="corner"></div>
+	
+	<div class="container" id="East">
+		<figure id="EastA" class="corner-front"></figure>
+		<figure id="EastB" class="corner-back"></figure>
+	</div>
+	
+	<div class="container" id="South">
+		<figure id="SouthA" class="corner-front"></figure>
+		<figure id="SouthB" class="corner-back"></figure>
+	</div>
 </div>
 
 <div id="blackScreen"></div>
@@ -48,7 +63,9 @@
   </div>
 </div> 
 
-<button class="open-button" onclick="openForm()">Cargar jugadores</button>
+<div class="mainBottons">
+	<button class="open-button" onclick="openForm()">Cargar jugadores</button>
+</div>
 
 </body>
 </html>
