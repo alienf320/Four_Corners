@@ -7,7 +7,7 @@
 	<script  src="./script.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="alert/dist/sweetalert.css">
+  
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 <div id="blackScreen"></div>
 
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  <div class="form-container">
     <h3>Cargar jugadores</h3>
     <label for="jugador"><b>Jugador</b></label>
     <input type="text" placeholder="Nombre del jugador" name="jugador" id="inputJugador">
@@ -45,7 +45,7 @@
 	</div>
 	<div id="jugadoresCargados"></div>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
+  </div>
 </div> 
 
 <button class="open-button" onclick="openForm()">Cargar jugadores</button>
